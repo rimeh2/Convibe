@@ -2,19 +2,32 @@
 class Assets {
   Assets._();
 
+  static const String iconsBankNote03 = 'assets/icons/bank-note-03.svg';
   static const String iconsBarChartSquareDown =
       'assets/icons/bar-chart-square-down.svg';
+  static const String iconsBox = 'assets/icons/box.svg';
   static const String iconsCake = 'assets/icons/cake.svg';
+  static const String iconsCalendarCheck01 =
+      'assets/icons/calendar-check-01.svg';
   static const String iconsCalender = 'assets/icons/calender.svg';
+  static const String iconsCall = 'assets/icons/Call.svg';
+  static const String iconsCoinsHand = 'assets/icons/coins-hand.svg';
   static const String iconsCurrencyDollarCircle =
       'assets/icons/currency-dollar-circle.svg';
   static const String iconsEnvelope = 'assets/icons/envelope.svg';
   static const String iconsEyeoff = 'assets/icons/Eye off.svg';
   static const String iconsFileCheck01 = 'assets/icons/file-check-01.svg';
   static const String iconsFilter = 'assets/icons/Filter.svg';
+  static const String iconsFlag = 'assets/icons/Flag.svg';
+  static const String iconsGoBack = 'assets/icons/Go Back.svg';
+  static const String iconsGrid01 = 'assets/icons/grid-01.svg';
   static const String iconsIconLuncher = 'assets/icons/icon_luncher.png';
+  static const String iconsNotifications = 'assets/icons/Notifications.svg';
+  static const String iconsPackage = 'assets/icons/package.svg';
   static const String iconsSearchNormal = 'assets/icons/search-normal.svg';
   static const String iconsUsers = 'assets/icons/users.svg';
+  static const String iconsWhatsapp = 'assets/icons/Whatsapp.svg';
+  static const String imagesGenre = 'assets/images/genre.png';
   static const String imagesLine = 'assets/images/Line.png';
   static const String imagesPie = 'assets/images/Pie.svg';
   static const String imagesSynergiaLogo = 'assets/images/synergia_logo.png';

@@ -34,6 +34,8 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.pushNamedAndRemoveUntil(
           context, Login.routeName, (route) => false);
     }
+    // Navigator.pushNamedAndRemoveUntil(
+    //     context, Login.routeName, (route) => false);
   }
 
   Future<bool> _checkToken() async {

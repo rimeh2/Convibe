@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import '../Views/Dashboard/DashboardScreen.dart';
+import '../Views/Employee/DetailsEmployee.dart';
 import '../Views/Employee/EmployeeScreen.dart';
 import '../Views/HomeScreen/Home.dart';
 import '../Views/Login/login.dart';
@@ -16,4 +17,5 @@ Map<String, WidgetBuilder> routes = {
 
   DashboardScreen.routeName: (context) => DashboardScreen(),
   Employeescreen.routeName: (context) => Employeescreen(),
+  DetailsProfil.routeName: (context) => DetailsProfil(),
 };

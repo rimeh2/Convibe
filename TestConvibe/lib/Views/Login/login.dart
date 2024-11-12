@@ -1,6 +1,13 @@
+import 'dart:convert';
+
+import 'package:cherry_toast/cherry_toast.dart';
+import 'package:cherry_toast/resources/arrays.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:testconvibe/Model/Authentication/RequestAuthentication.dart';
+import 'package:testconvibe/Model/Authentication/ResponseAuthentication.dart';
+import 'package:testconvibe/Services/Authentification.dart';
 import 'package:testconvibe/Views/Components/AppBar.dart';
 import 'package:testconvibe/Views/HomeScreen/Home.dart';
 
@@ -29,12 +36,44 @@ class _LoginState extends State<Login> {
     });
   }
 
-  void _login() {
+  void _login() async {
     if (_formKey.currentState!.validate()) {
-      Navigator.pushNamedAndRemoveUntil(
-          context, HomeScreen.routeName, (route) => false);
-      // Handle login logic here (e.g., call API or authenticate)
-      print("Logging in with username: ${_UsernameController.text}");
+      RequestAuthentication LoginModel = RequestAuthentication(
+          email: _UsernameController.text, password: _passwordController.text);
+
+      ResponseAuthentication? response = await authenticate(LoginModel);
+      if (response!.status == true) {
+        CherryToast.success(
+          title: Text("Success",
+              style: TextStyle(color: Colors.black, fontSize: 12)),
+          description: Text("Welcome",
+              style: TextStyle(fontSize: 12, color: Colors.black)),
+          animationType: AnimationType.fromBottom,
+          toastPosition: Position.bottom,
+        ).show(context);
+        Navigator.pushNamedAndRemoveUntil(
+            context, HomeScreen.routeName, (route) => false);
+        // Handle login logic here (e.g., call API or authenticate)
+        print("Logging in with username: ${_UsernameController.text}");
+      } else if (response.status == false) {
+        CherryToast.error(
+          title: Text(response.status.toString(),
+              style: TextStyle(color: Colors.black, fontSize: 12)),
+          description: Text(response.message!,
+              style: TextStyle(fontSize: 12, color: Colors.black)),
+          animationType: AnimationType.fromBottom,
+          toastPosition: Position.bottom,
+        ).show(context);
+      } else {
+        CherryToast.error(
+          title: Text("Enter a valid email adress",
+              style: TextStyle(color: Colors.black, fontSize: 12)),
+          description: Text(response.message!,
+              style: TextStyle(fontSize: 12, color: Colors.black)),
+          animationType: AnimationType.fromBottom,
+          toastPosition: Position.bottom,
+        ).show(context);
+      }
     }
   }
 

@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:testconvibe/Model/Company/ConpanyResponse.dart';
 
 import '../../Constants/colors.dart';
 
 class Cardcompanies extends StatelessWidget {
-  const Cardcompanies({super.key});
+  final Company company;
+  const Cardcompanies({super.key, required this.company});
 
   @override
   Widget build(BuildContext context) {
@@ -15,18 +17,25 @@ class Cardcompanies extends StatelessWidget {
       height: 90,
       width: MediaQuery.of(context).size.width * 0.95, // Responsive width
       decoration: BoxDecoration(
-        color: backgroundCard, // Background color
+        color: Colors.grey[200], // Background color
         borderRadius: BorderRadius.circular(50),
       ),
       child: Row(
         children: [
-          ClipOval(
-            child: Image.network(
-                "https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp"),
+          Container(
+            decoration: BoxDecoration(
+              color: backgroundCard, // Background color
+              borderRadius: BorderRadius.circular(50),
+            ),
+            width: 80,
+            height: 80,
+            child: ClipOval(
+              child: Image.network(company.logo!),
+            ),
           ),
           SizedBox(
             width:
-                MediaQuery.of(context).size.width * 0.02, // Responsive spacing
+                MediaQuery.of(context).size.width * 0.03, // Responsive spacing
           ),
           Expanded(
             child: Column(
@@ -34,7 +43,7 @@ class Cardcompanies extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Altech Aluminium & Street Wlll',
+                  company.companyName!,
                   style: GoogleFonts.poppins(
                     fontSize: 16, // Responsive font size
                     color: BaseColor,

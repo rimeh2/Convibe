@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:testconvibe/Views/Login/login.dart';
+import 'package:http/http.dart' as http;
 
 import '../../Constants/colors.dart';
 import '../Components/AppBar.dart';
@@ -25,7 +29,13 @@ class _SettingServerState extends State<SettingServer> {
     }
   }
 
+  @override
+  void initState() {
+    super.initState();
+  }
+
   String _networkType = 'local'; // Initial selected value
+  var _adresse = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 

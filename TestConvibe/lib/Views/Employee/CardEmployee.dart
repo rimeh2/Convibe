@@ -1,22 +1,55 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../Constants/colors.dart';
+import '../../Model/Company/Employee.dart';
 
 class CardEmployee extends StatelessWidget {
-  const CardEmployee({super.key});
+  final Data
+      employee; // Now using Data class directly for individual employee data
+
+  const CardEmployee({super.key, required this.employee});
+  String calculateExperience(String joinDate) {
+    DateTime date = DateTime.parse(joinDate); // Convert string to DateTime
+    final currentDate = DateTime.now();
+
+    int years = currentDate.year - date.year; // Use `date` (DateTime object)
+    int months = currentDate.month - date.month;
+
+    // Adjust if the month difference is negative
+    if (months < 0) {
+      years -= 1;
+      months += 12;
+    }
+
+    return '$years Years and $months Months';
+  }
+
+  String calculateage(String joinDate) {
+    DateTime date = DateTime.parse(joinDate); // Convert string to DateTime
+    final currentDate = DateTime.now();
+
+    int years = currentDate.year - date.year; // Use `date` (DateTime object)
+    int months = currentDate.month - date.month;
+
+    // Adjust if the month difference is negative
+    if (months < 0) {
+      years -= 1;
+      months += 12;
+    }
+
+    return '$years Years ';
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(8),
-      height: 70,
-      // width: 389,
+      height: 90, // Adjusted height
       width: MediaQuery.of(context).size.width * 0.92, // Responsive width
       decoration: BoxDecoration(
-        color: Colors.white, // Background color
+        color: Colors.white,
         borderRadius: BorderRadius.circular(25),
       ),
       child: Row(
@@ -25,8 +58,12 @@ class CardEmployee extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: ClipOval(
               child: Image.network(
-                  width: 50,
-                  "https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp"),
+                employee.image ??
+                    "https://placeholder.com/50", // Default if image is null
+                width: 50,
+                height: 50,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           SizedBox(
@@ -35,123 +72,83 @@ class CardEmployee extends StatelessWidget {
           ),
           Expanded(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        Text(
-                          'herry blair',
-                          style: GoogleFonts.poppins(
-                            fontSize: 16, // Responsive font size
-                            color: BaseColor,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Container(
-                          child: Text(
-                            'Doha-Qatar',
-                            style: GoogleFonts.poppins(
-                              fontSize: 12, // Responsive font size
-                              color: BaseColor,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      width: 24.44,
-                      height: 24,
-                      child: Image.network(
-                          width: 20,
-                          "https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp"),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width *
-                      0.8, // Responsive width
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Row(
-                          // mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              width: 13,
-                              height: 13,
-                              "assets/icons/users.svg",
-                              colorFilter: ColorFilter.mode(
-                                  Colors.grey, BlendMode.srcIn),
-                              semanticsLabel: 'User icon',
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              "029",
-                              style: TextStyle(
-                                fontSize: 10,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Row(
-                          // mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              width: 13,
-                              height: 13,
-                              "assets/icons/users.svg",
-                              colorFilter: ColorFilter.mode(
-                                  Colors.grey, BlendMode.srcIn),
-                              semanticsLabel: 'User icon',
-                            ),
-                            Text(
-                              "30 Years",
-                              style: TextStyle(
-                                fontSize: 10,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Row(
-                          // mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              width: 13,
-                              height: 13,
-                              "assets/icons/users.svg",
-                              colorFilter: ColorFilter.mode(
-                                  Colors.grey, BlendMode.srcIn),
-                              semanticsLabel: 'User icon',
-                            ),
-                            Text(
-                              "08 Years 2 Months",
-                              style: TextStyle(
-                                fontSize: 10,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                Text(
+                  "${employee.firstName ?? ''} ${employee.lastName ?? ''}",
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    color: BaseColor,
+                    fontWeight: FontWeight.bold,
                   ),
+                ),
+                Text(
+                  employee.city ?? 'Location unknown',
+                  style: GoogleFonts.poppins(
+                    fontSize: 12,
+                    color: BaseColor,
+                  ),
+                ),
+                SizedBox(height: 5),
+                Row(
+                  children: [
+                    SvgPicture.asset(
+                      "assets/icons/users.svg",
+                      width: 13,
+                      height: 13,
+                      colorFilter:
+                          ColorFilter.mode(Colors.grey, BlendMode.srcIn),
+                      semanticsLabel: 'User icon',
+                    ),
+                    SizedBox(width: 5),
+                    Text(
+                      "${employee.country ?? 'N/A'}",
+                      style: TextStyle(fontSize: 10),
+                    ),
+                    SizedBox(width: 10),
+                    SvgPicture.asset(
+                      "assets/icons/cake.svg",
+                      width: 13,
+                      height: 13,
+                      colorFilter:
+                          ColorFilter.mode(Colors.grey, BlendMode.srcIn),
+                      semanticsLabel: 'User icon',
+                    ),
+                    SizedBox(width: 5),
+                    Text(
+                      "${calculateage(employee.dateOfBirth!)}",
+                      style: TextStyle(fontSize: 10),
+                    ),
+                    SizedBox(width: 10),
+                    SvgPicture.asset(
+                      "assets/icons/calender.svg",
+                      width: 13,
+                      height: 13,
+                      colorFilter:
+                          ColorFilter.mode(Colors.grey, BlendMode.srcIn),
+                      semanticsLabel: 'User icon',
+                    ),
+                    SizedBox(width: 5),
+                    Text(
+                      "${calculateExperience(employee.joiningDate!)}",
+                      style: TextStyle(fontSize: 10),
+                    ),
+                  ],
                 ),
               ],
             ),
           ),
+          // Container(
+          //   margin: EdgeInsets.all(10),
+          //   width: 24,
+          //   height: 24,
+          //   child: SvgPicture.asset(
+          //     "assets/icons/star.svg", // Use a relevant icon here
+          //     width: 20,
+          //     color: Colors.amber, // Example for a "favorite" icon
+          //   ),
+          // ),
         ],
       ),
     );

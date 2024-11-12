@@ -4,6 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 const Color BaseColor = Color.fromRGBO(33, 26, 26, 1);
 const Color white = Colors.white;
 const Color grey717 = Color(0xff717171);
+const Color cardcolor = Color.fromRGBO(251, 251, 253, 1);
+const Color coloricon = Color.fromRGBO(135, 186, 55, 1);
+const Color colorcart = Color.fromRGBO(244, 116, 88, 1.0);
 
 const Color backgroundCard = Color.fromRGBO(251, 251, 253, 1);
 final kTextStyle = GoogleFonts.inter(
