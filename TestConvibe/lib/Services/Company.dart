@@ -40,7 +40,7 @@ Future<List<Company>> getListCOMPANY() async {
   }
 }
 
-Future<DashbordCompany?> Dashbord(int id) async {
+Future<Data?> Dashbordd(int id) async {
   // Retrieve the token from SharedPreferences
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String? token = prefs.getString('token'); // Make sure token is not null
@@ -65,18 +65,26 @@ Future<DashbordCompany?> Dashbord(int id) async {
         'Authorization': 'Bearer $token',
       },
     );
-
+    print("this is response ");
+    print(response.body);
+    print(response.statusCode);
     // Check if the response status code is 200 (OK)
     if (response.statusCode == 200) {
       var jsonData = jsonDecode(response.body);
-      // Parse the response to a DashbordCompany object
-      DashbordCompany dashbord = DashbordCompany.fromJson(jsonData);
-      print(response.body); // You can remove this in production
-      return dashbord;
-    } else {
-      // Handle error if status code is not 200
-      print("Error: ${response.statusCode}");
-      return null;
+      final Map<String, dynamic> jsonMap = jsonDecode(response.body);
+
+      if (jsonMap['status'] == true) {
+        var data = jsonMap['data']; // Accessing the data array
+
+        Data employees;
+        Data dashbord = Data.fromJson(data);
+
+        return dashbord; // Now employees list should be correctly populated
+      } else {
+        Data dashbord = new Data();
+        print('Failed to retrieve employees');
+        return dashbord;
+      }
     }
   } catch (e) {
     // Catch any exception (e.g., network issues) and log it

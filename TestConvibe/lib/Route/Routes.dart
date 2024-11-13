@@ -15,7 +15,4 @@ Map<String, WidgetBuilder> routes = {
   HomeScreen.routeName: (context) => HomeScreen(),
   SettingServer.routeName: (context) => SettingServer(),
 
-  DashboardScreen.routeName: (context) => DashboardScreen(),
-  Employeescreen.routeName: (context) => Employeescreen(),
-  DetailsProfil.routeName: (context) => DetailsProfil(),
 };

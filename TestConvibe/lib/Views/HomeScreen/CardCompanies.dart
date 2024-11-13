@@ -13,7 +13,8 @@ class Cardcompanies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(8),
+      //  padding: EdgeInsets.all(10),
+      margin: EdgeInsets.only(top: 18),
       height: 90,
       width: MediaQuery.of(context).size.width * 0.95, // Responsive width
       decoration: BoxDecoration(
@@ -42,12 +43,15 @@ class Cardcompanies extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  company.companyName!,
-                  style: GoogleFonts.poppins(
-                    fontSize: 16, // Responsive font size
-                    color: BaseColor,
-                    fontWeight: FontWeight.bold,
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Text(
+                    company.companyName!,
+                    style: GoogleFonts.poppins(
+                      fontSize: 16, // Responsive font size
+                      color: BaseColor,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 Container(

@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:testconvibe/Views/Employee/EmployeeScreen.dart';
+import 'package:testconvibe/Views/HomeScreen/Home.dart';
 
 import '../../generated/assets.dart';
+import '../Provider/provider.dart';
 
 class CustomNavBar extends StatefulWidget {
+  final String? imageCenter;
+  CustomNavBar({this.imageCenter});
+
   @override
   _CustomNavBarState createState() => _CustomNavBarState();
 }
@@ -12,6 +18,11 @@ class CustomNavBar extends StatefulWidget {
 class _CustomNavBarState extends State<CustomNavBar> {
   // Track the active state for each icon
   int _selectedIndex = -1;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +46,12 @@ class _CustomNavBarState extends State<CustomNavBar> {
         children: [
           _buildNavItem(Assets.iconsUsers, 0),
           _buildNavItem(Assets.iconsCurrencyDollarCircle, 1),
-          _buildCenterItem(),
+          InkWell(
+              onTap: () {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, HomeScreen.routeName, (route) => false);
+              },
+              child: _buildCenterItem()),
           _buildNavItem(Assets.iconsFileCheck01, 2),
           _buildNavItem(Assets.iconsBarChartSquareDown, 3),
         ],
@@ -51,8 +67,9 @@ class _CustomNavBarState extends State<CustomNavBar> {
         });
         switch (index) {
           case 0:
-            Navigator.pushNamedAndRemoveUntil(
-                context, Employeescreen.routeName, (route) => false);
+            Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => Employeescreen()),
+                (Route<dynamic> route) => false);
             break;
           case 1:
             print("1");
@@ -98,11 +115,11 @@ class _CustomNavBarState extends State<CustomNavBar> {
       width: 50,
       height: 50,
       decoration: BoxDecoration(
-        color: Colors.redAccent,
+        // color: Colors.redAccent,
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
-            color: Colors.redAccent.withOpacity(0.4),
+            color: Colors.white.withOpacity(0.4),
             spreadRadius: 2,
             blurRadius: 6,
           ),
@@ -110,9 +127,9 @@ class _CustomNavBarState extends State<CustomNavBar> {
       ),
       child: Center(
         child: Image.network(
-          "https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp", // Replace with your icon URL
-          width: 30,
-          height: 30,
+          widget.imageCenter!, // Replace with your icon URL
+          width: 60,
+          height: 60,
         ),
       ),
     );

@@ -1,11 +1,11 @@
-class DashbordCompany {
+class Dashbord {
   bool? status;
   String? message;
   Data? data;
 
-  DashbordCompany({this.status, this.message, this.data});
+  Dashbord({this.status, this.message, this.data});
 
-  DashbordCompany.fromJson(Map<String, dynamic> json) {
+  Dashbord.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
@@ -37,7 +37,7 @@ class Data {
   List<NationalityWiseEmployeeCount>? nationalityWiseEmployeeCount;
   List<GenderWiseEmployeeCount>? genderWiseEmployeeCount;
   CompanyAddress? companyAddress;
-  List<EmployeesCount>? employeesCount;
+  EmployeesCount? employeesCount;
 
   Data(
       {this.id,
@@ -84,12 +84,9 @@ class Data {
     companyAddress = json['company_address'] != null
         ? new CompanyAddress.fromJson(json['company_address'])
         : null;
-    if (json['employees_count'] != null) {
-      employeesCount = <EmployeesCount>[];
-      json['employees_count'].forEach((v) {
-        employeesCount!.add(new EmployeesCount.fromJson(v));
-      });
-    }
+    employeesCount = json['employees_count'] != null
+        ? new EmployeesCount.fromJson(json['employees_count'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -117,8 +114,7 @@ class Data {
       data['company_address'] = this.companyAddress!.toJson();
     }
     if (this.employeesCount != null) {
-      data['employees_count'] =
-          this.employeesCount!.map((v) => v.toJson()).toList();
+      data['employees_count'] = this.employeesCount!.toJson();
     }
     return data;
   }

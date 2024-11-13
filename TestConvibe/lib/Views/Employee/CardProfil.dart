@@ -6,21 +6,21 @@ import 'package:sizer/sizer.dart';
 import '../../Constants/colors.dart';
 
 class CardProfil extends StatelessWidget {
-  const CardProfil({
-    super.key,
-    this.informationText1,
-    this.informationText2,
-    this.informationText3,
-    this.informationText4,
-    this.informationText5,
-    this.informationText6,
-    this.informationText7,
-    this.informationText8,
-    this.informationText9,
-    this.informationText10,
-    this.informationText11,
-    this.informationText12,
-  });
+  const CardProfil(
+      {super.key,
+      this.informationText1,
+      this.informationText2,
+      this.informationText3,
+      this.informationText4,
+      this.informationText5,
+      this.informationText6,
+      this.informationText7,
+      this.informationText8,
+      this.informationText9,
+      this.informationText10,
+      this.informationText11,
+      this.informationText12,
+      this.titre});
   final String? informationText1;
   final String? informationText2;
   final String? informationText3;
@@ -33,6 +33,7 @@ class CardProfil extends StatelessWidget {
   final String? informationText10;
   final String? informationText11;
   final String? informationText12;
+  final String? titre;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -48,8 +49,7 @@ class CardProfil extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment
                     .center, // Centrer la colonne verticalement
                 children: [
-                  for (var char
-                      in "PROFESSIONAL".split('')) // Séparer chaque lettre
+                  for (var char in titre!.split('')) // Séparer chaque lettre
                     RotatedBox(
                       quarterTurns: 1,
                       child: Text(
@@ -94,7 +94,7 @@ class CardProfil extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Work Visa",
+                                  informationText1 ?? "",
                                   style: GoogleFonts.poppins(
                                     fontSize: 14,
                                     color: Color.fromRGBO(13, 10, 44, 1),
@@ -102,7 +102,7 @@ class CardProfil extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "Joining Date",
+                                  informationText2 ?? "",
                                   style: GoogleFonts.poppins(
                                     fontSize: 12,
                                     color: grey717,
@@ -116,7 +116,7 @@ class CardProfil extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Work Visa",
+                                  informationText3 ?? "",
                                   style: GoogleFonts.poppins(
                                     fontSize: 14,
                                     color: Color.fromRGBO(13, 10, 44, 1),
@@ -124,60 +124,7 @@ class CardProfil extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "Joining Date",
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 12,
-                                    color: grey717,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 8.0, horizontal: 8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Work Visa",
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 14,
-                                    color: Color.fromRGBO(13, 10, 44, 1),
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                Text(
-                                  "Joining Date",
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 12,
-                                    color: grey717,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Work Visa",
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 14,
-                                    color: Color.fromRGBO(13, 10, 44, 1),
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                Text(
-                                  "Joining Date",
+                                  informationText4 ?? "",
                                   style: GoogleFonts.poppins(
                                     fontSize: 12,
                                     color: grey717,
@@ -200,7 +147,7 @@ class CardProfil extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Work Visa",
+                                  informationText5 ?? "",
                                   style: GoogleFonts.poppins(
                                     fontSize: 14,
                                     color: Color.fromRGBO(13, 10, 44, 1),
@@ -208,7 +155,7 @@ class CardProfil extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "Joining Date",
+                                  informationText6 ?? "",
                                   style: GoogleFonts.poppins(
                                     fontSize: 12,
                                     color: grey717,
@@ -222,7 +169,7 @@ class CardProfil extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Work Visa",
+                                  informationText7 ?? "",
                                   style: GoogleFonts.poppins(
                                     fontSize: 14,
                                     color: Color.fromRGBO(13, 10, 44, 1),
@@ -230,7 +177,60 @@ class CardProfil extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "Joining Date",
+                                  informationText8 ?? "",
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 12,
+                                    color: grey717,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  informationText9 ?? "",
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 14,
+                                    color: Color.fromRGBO(13, 10, 44, 1),
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                Text(
+                                  informationText10 ?? "",
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 12,
+                                    color: grey717,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  informationText11 ?? "",
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 14,
+                                    color: Color.fromRGBO(13, 10, 44, 1),
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                Text(
+                                  informationText12 ?? "",
                                   style: GoogleFonts.poppins(
                                     fontSize: 12,
                                     color: grey717,

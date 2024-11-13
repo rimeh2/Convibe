@@ -57,14 +57,35 @@ class CardEmployee extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ClipOval(
-              child: Image.network(
-                employee.image ??
-                    "https://placeholder.com/50", // Default if image is null
-                width: 50,
-                height: 50,
-                fit: BoxFit.cover,
-              ),
-            ),
+                child: Image.network(
+              employee.image ??
+                  "https://www.powertrafic.fr/wp-content/uploads/2023/04/image-ia-exemple.png", // Default image if `employee.image` is null
+              width: 50,
+              height: 50,
+              fit: BoxFit.cover,
+              loadingBuilder: (BuildContext context, Widget child,
+                  ImageChunkEvent? loadingProgress) {
+                if (loadingProgress == null) return child; // Image loaded
+                return Center(
+                  child: CircularProgressIndicator(
+                    value: loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded /
+                            (loadingProgress.expectedTotalBytes ?? 1)
+                        : null,
+                  ),
+                );
+              },
+              errorBuilder: (BuildContext context, Object exception,
+                  StackTrace? stackTrace) {
+                // Fallback image if there's an error loading
+                return Image.network(
+                  "https://www.powertrafic.fr/wp-content/uploads/2023/04/image-ia-exemple.png",
+                  width: 50,
+                  height: 50,
+                  fit: BoxFit.cover,
+                );
+              },
+            )),
           ),
           SizedBox(
             width:
