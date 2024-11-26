@@ -38,8 +38,8 @@ class Data {
   String? createdDate;
   String? lastModifiedDate;
   String? image;
-  Null? employmentType;
-  Null? salutation;
+  int? employmentType;
+  int? salutation;
   String? firstName;
   String? lastName;
   String? countryCodeMobile;

@@ -85,7 +85,8 @@ class _EmployeescreenState extends State<Employeescreen> {
     inputTex inputTexProvider = Provider.of<inputTex>(context);
     imageurl = inputTexProvider.image;
     id = inputTexProvider.id;
-
+    print("get id ");
+    print(id);
     if (id != null) {
       func = getListEmployee(id!);
     }

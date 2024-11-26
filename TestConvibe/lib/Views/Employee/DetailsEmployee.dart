@@ -281,10 +281,15 @@ class _DetailsProfilState extends State<DetailsProfil> {
                             ),
                             Row(
                               children: [
-                                SvgPicture.asset(
-                                  "assets/icons/Whatsapp.svg",
-                                  width: 24,
-                                  height: 24,
+                                InkWell(
+                                  onTap: () {
+                                    sendMessage();
+                                  },
+                                  child: SvgPicture.asset(
+                                    "assets/icons/Whatsapp.svg",
+                                    width: 24,
+                                    height: 24,
+                                  ),
                                 ),
                                 SizedBox(width: 8),
                                 InkWell(
@@ -373,6 +378,22 @@ class _DetailsProfilState extends State<DetailsProfil> {
       }
     } catch (e) {
       print("Error launching URL: $e");
+    }
+  }
+
+  Future<void> sendMessage() async {
+    try {
+      // Construct the SMS URL
+      final Uri url = Uri(scheme: 'sms', path: widget.employee.mobileNumber);
+
+      // Check if the URL can be launched
+      if (await canLaunchUrl(url)) {
+        await launchUrl(url);
+      } else {
+        print("Cannot launch SMS URL");
+      }
+    } catch (e) {
+      print("Error launching SMS URL: $e");
     }
   }
 

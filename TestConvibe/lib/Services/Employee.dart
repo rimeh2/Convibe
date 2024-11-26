@@ -22,7 +22,7 @@ Future<List<Data>> getListEmployee(int id) async {
   );
 
   final String responseString = Response.body;
-
+  print("this is response string" + responseString);
   if (Response.statusCode == 200) {
     final Map<String, dynamic> jsonMap = jsonDecode(responseString);
 
@@ -32,7 +32,7 @@ Future<List<Data>> getListEmployee(int id) async {
       List<Data> employees = [];
       employees =
           data.map((employeeJson) => Data.fromJson(employeeJson)).toList();
-
+      print('this is employee ');
       print(employees);
       return employees; // Now employees list should be correctly populated
     } else {
