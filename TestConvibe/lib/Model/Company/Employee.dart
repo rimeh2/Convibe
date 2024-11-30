@@ -5,11 +5,6 @@ class Employee {
 
   Employee({this.status, this.message, this.data});
 
-  @override
-  String toString() {
-    return 'Employee{status: $status, message: $message, data: $data}';
-  }
-
   Employee.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
@@ -46,12 +41,12 @@ class Data {
   String? mobileNumber;
   String? personalEmail;
   String? emergencyEmail;
-  int? countryCodeEmergency;
+  String? countryCodeEmergency;
   String? emergencyContact;
   int? emergencyContactSalutation;
   String? emergencyContactName;
   int? emergencyContactRelationship;
-  int? countryCodeWork;
+  String? countryCodeWork;
   String? workContact;
   String? email;
   String? city;
@@ -266,10 +261,5 @@ class Data {
     data['employee_level'] = this.employeeLevel;
     data['root_user'] = this.rootUser;
     return data;
-  }
-
-  @override
-  String toString() {
-    return 'Data{id: $id, activated: $activated, createdDate: $createdDate, lastModifiedDate: $lastModifiedDate, image: $image, employmentType: $employmentType, salutation: $salutation, firstName: $firstName, lastName: $lastName, countryCodeMobile: $countryCodeMobile, mobileNumber: $mobileNumber, personalEmail: $personalEmail, emergencyEmail: $emergencyEmail, countryCodeEmergency: $countryCodeEmergency, emergencyContact: $emergencyContact, emergencyContactSalutation: $emergencyContactSalutation, emergencyContactName: $emergencyContactName, emergencyContactRelationship: $emergencyContactRelationship, countryCodeWork: $countryCodeWork, workContact: $workContact, email: $email, city: $city, citizen: $citizen, dateOfBirth: $dateOfBirth, gender: $gender, hrId: $hrId, joiningDate: $joiningDate, arrivalDate: $arrivalDate, nickname: $nickname, bloodGrp: $bloodGrp, isRoster: $isRoster, perAddSame: $perAddSame, permanentAddress: $permanentAddress, localAddress: $localAddress, religion: $religion, maritalStatus: $maritalStatus, exemptFromSchedule: $exemptFromSchedule, isDriver: $isDriver, exemptFromOvertime: $exemptFromOvertime, hourlyRate: $hourlyRate, basicHourlyRate: $basicHourlyRate, employeeType: $employeeType, activeStatus: $activeStatus, vacationEligible: $vacationEligible, isWorkFromHome: $isWorkFromHome, isManagement: $isManagement, isAccountant: $isAccountant, isHr: $isHr, employeeSelfServiceEnabled: $employeeSelfServiceEnabled, lastModifiedBy: $lastModifiedBy, company: $company, designation: $designation, department: $department, country: $country, employeeLevel: $employeeLevel, rootUser: $rootUser}';
   }
 }
