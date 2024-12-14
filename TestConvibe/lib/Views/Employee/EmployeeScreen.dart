@@ -9,6 +9,7 @@ import '../../Constants/colors.dart';
 import '../../Services/Employee.dart';
 import '../../generated/assets.dart';
 import '../Components/AppBar.dart';
+import '../Components/BottomNavBar.dart';
 import '../Components/CustomNavBar.dart';
 import '../Login/login.dart';
 import '../Provider/provider.dart';
@@ -83,7 +84,7 @@ class _EmployeescreenState extends State<Employeescreen> {
     super.didChangeDependencies();
 
     inputTex inputTexProvider = Provider.of<inputTex>(context);
-    imageurl = inputTexProvider.image;
+
     id = inputTexProvider.id;
     print("get id ");
     print(id);
@@ -103,205 +104,202 @@ class _EmployeescreenState extends State<Employeescreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarSpecial(
-        Title: "Employees",
-        Action: ItemAction(),
-      ),
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(28.0),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Hi, Administrator',
-                      style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
-                          color: BaseColor,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
+        appBar: AppBarSpecial(
+          Title: "Employees",
+          Action: ItemAction(),
+        ),
+        body: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(28.0),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Hi, Administrator',
+                        style: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                            color: BaseColor,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.2),
-                                spreadRadius: 1,
-                                blurRadius: 1,
-                                offset: Offset(0, 1),
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.2),
+                                  spreadRadius: 1,
+                                  blurRadius: 1,
+                                  offset: Offset(0, 1),
+                                ),
+                              ],
+                            ),
+                            margin: EdgeInsets.all(10),
+                            height: 50,
+                            width: MediaQuery.of(context).size.width * 0.80,
+                            child: TextFormField2(
+                              prefixIcon: IconButton(
+                                icon: SvgPicture.asset(Assets.iconsSearchNormal,
+                                    color: grey717, semanticsLabel: 'Label'),
+                                onPressed: () {},
                               ),
-                            ],
-                          ),
-                          margin: EdgeInsets.all(10),
-                          height: 50,
-                          width: MediaQuery.of(context).size.width * 0.80,
-                          child: TextFormField2(
-                            prefixIcon: IconButton(
-                              icon: SvgPicture.asset(Assets.iconsSearchNormal,
-                                  color: grey717, semanticsLabel: 'Label'),
-                              onPressed: () {},
-                            ),
-                            keyboardType: TextInputType.text,
-                            controller: searchController,
-                            hintText: "Search employee...",
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: InkWell(
-                            onTap: _toggleFilterMenu,
-                            child: SvgPicture.asset(
-                              width: 24,
-                              height: 24,
-                              'assets/icons/Filter.svg',
-                              semanticsLabel: 'Filter icon',
+                              keyboardType: TextInputType.text,
+                              controller: searchController,
+                              hintText: "Search employee...",
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                FutureBuilder<List<Data>>(
-                  future: func,
-                  builder: (
-                    BuildContext context,
-                    AsyncSnapshot<List<Data>> snapshot,
-                  ) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Container(
-                        margin: EdgeInsets.only(top: 200),
-                        child: Center(child: CupertinoActivityIndicator()),
-                      );
-                    } else if (snapshot.connectionState ==
-                        ConnectionState.done) {
-                      if (snapshot.hasError) {
-                        return Center(
-                          child: Text(
-                            "Error: " + snapshot.error.toString(),
-                            style: TextStyle(color: Colors.grey),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: InkWell(
+                              onTap: _toggleFilterMenu,
+                              child: SvgPicture.asset(
+                                width: 24,
+                                height: 24,
+                                'assets/icons/Filter.svg',
+                                semanticsLabel: 'Filter icon',
+                              ),
+                            ),
                           ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  FutureBuilder<List<Data>>(
+                    future: func,
+                    builder: (
+                      BuildContext context,
+                      AsyncSnapshot<List<Data>> snapshot,
+                    ) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Container(
+                          margin: EdgeInsets.only(top: 200),
+                          child: Center(child: CupertinoActivityIndicator()),
                         );
-                      } else if (snapshot.hasData) {
-                        List<Data> employees = snapshot.data!;
+                      } else if (snapshot.connectionState ==
+                          ConnectionState.done) {
+                        if (snapshot.hasError) {
+                          return Center(
+                            child: Text(
+                              "Error: " + snapshot.error.toString(),
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                          );
+                        } else if (snapshot.hasData) {
+                          List<Data> employees = snapshot.data!;
 
-                        return ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          physics: ScrollPhysics(),
-                          itemCount: employees.length,
-                          itemBuilder: (BuildContext ctx, index) {
-                            return InkWell(
-                              onTap: () {
-                                Navigator.of(context).pushAndRemoveUntil(
-                                  MaterialPageRoute(
-                                    builder: (context) => DetailsProfil(
-                                      employee: employees[index],
+                          return ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            physics: ScrollPhysics(),
+                            itemCount: employees.length,
+                            itemBuilder: (BuildContext ctx, index) {
+                              return InkWell(
+                                onTap: () {
+                                  Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                      builder: (context) => DetailsProfil(
+                                        employee: employees[index],
+                                      ),
                                     ),
-                                  ),
-                                  (Route<dynamic> route) => false,
-                                );
-                              },
-                              child: CardEmployee(employee: employees[index]),
-                            );
-                          },
-                        );
+                                    (Route<dynamic> route) => false,
+                                  );
+                                },
+                                child: CardEmployee(employee: employees[index]),
+                              );
+                            },
+                          );
+                        } else {
+                          return const Text('Empty data');
+                        }
                       } else {
-                        return const Text('Empty data');
+                        return Text('State: ${snapshot.connectionState}');
                       }
-                    } else {
-                      return Text('State: ${snapshot.connectionState}');
-                    }
-                  },
-                ),
-              ],
+                    },
+                  ),
+                ],
+              ),
             ),
-          ),
-          if (_isFilterVisible)
-            GestureDetector(
-              onTap: _toggleFilterMenu,
-              child: Container(
-                margin: const EdgeInsets.only(left: 120, top: 130),
-                width: 250,
-                height: 450,
-                // color: Colors.black54,
-                child: Center(
-                  child: Container(
-                    padding: const EdgeInsets.all(0),
-                    //margin: const EdgeInsets.only(left: 10),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black26,
-                          blurRadius: 4,
-                          offset: Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Departments',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+            if (_isFilterVisible)
+              GestureDetector(
+                onTap: _toggleFilterMenu,
+                child: Container(
+                  margin: const EdgeInsets.only(left: 120, top: 130),
+                  width: 250,
+                  height: 450,
+                  // color: Colors.black54,
+                  child: Center(
+                    child: Container(
+                      padding: const EdgeInsets.all(0),
+                      //margin: const EdgeInsets.only(left: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 4,
+                            offset: Offset(0, 2),
                           ),
-                        ),
-                        Divider(),
-                        _buildFilterOption('Accounts'),
-                        Divider(
-                          color: Colors.blueAccent,
-                        ),
-                        _buildFilterOption('Estimation'),
-                        Divider(
-                          color: Colors.blueAccent,
-                        ),
-                        _buildFilterOption('IT'),
-                        Divider(
-                          color: Colors.blueAccent,
-                        ),
-                        _buildFilterOption('Design'),
-                        Divider(
-                          color: Colors.blueAccent,
-                        ),
-                        _buildFilterOption('Production'),
-                        Divider(
-                          color: Colors.blueAccent,
-                        ),
-                        _buildFilterOption('Projects'),
-                        Divider(
-                          color: Colors.blueAccent,
-                        ),
-                        _buildFilterOption('Store'),
-                      ],
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'Departments',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Divider(),
+                          _buildFilterOption('Accounts'),
+                          Divider(
+                            color: Colors.blueAccent,
+                          ),
+                          _buildFilterOption('Estimation'),
+                          Divider(
+                            color: Colors.blueAccent,
+                          ),
+                          _buildFilterOption('IT'),
+                          Divider(
+                            color: Colors.blueAccent,
+                          ),
+                          _buildFilterOption('Design'),
+                          Divider(
+                            color: Colors.blueAccent,
+                          ),
+                          _buildFilterOption('Production'),
+                          Divider(
+                            color: Colors.blueAccent,
+                          ),
+                          _buildFilterOption('Projects'),
+                          Divider(
+                            color: Colors.blueAccent,
+                          ),
+                          _buildFilterOption('Store'),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-        ],
-      ),
-      bottomNavigationBar: CustomNavBar(
-        imageCenter: imageurl,
-      ),
-    );
+          ],
+        ),
+        bottomNavigationBar: BottomNavBar());
   }
 
   Widget _buildFilterOption(String text) {

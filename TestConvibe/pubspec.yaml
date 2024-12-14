@@ -47,6 +47,7 @@ dependencies:
   lottie: ^3.1.2
   provider: ^6.1.2
   url_launcher: ^6.3.1
+  badges: ^3.1.2
 
 
 
@@ -75,6 +76,19 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/font/
+
+  fonts:
+      - family: SFProDisplay
+        fonts:
+          - asset: assets/font/SFpro/SFPRODISPLAYBLACKITALIC.otf
+      - family: SFProRegular
+        fonts:
+          - asset: assets/font/SFpro/SFPRODISPLAYREGULAR.otf
+      - family: SFProMEDIUM
+        fonts:
+          - asset: assets/font/SFpro/SFPRODISPLAYMEDIUM.otf
+
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -106,6 +120,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: false

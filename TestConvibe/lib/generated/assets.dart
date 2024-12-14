@@ -2,58 +2,66 @@
 class Assets {
   Assets._();
 
+  static const String assetsIconsBox = 'assets/icons/box.svg';
+  static const String assetsIconsCalendarCheck01 =
+      'assets/icons/calendar-check-01.svg';
+  static const String assetsIconsCoinsHand = 'assets/icons/coins-hand.svg';
+  static const String assetsIconsGrid01 = 'assets/icons/grid-01.svg';
+  static const String assetsIconsIcon = 'assets/icons/Icon.svg';
+  static const String assetsIconsPackage = 'assets/icons/package.svg';
   static const String iconsBankNote03 = 'assets/icons/bank-note-03.svg';
   static const String iconsBarChartSquareDown =
       'assets/icons/bar-chart-square-down.svg';
-  static const String iconsBox = 'assets/icons/box.svg';
+  static const String iconsBox = 'assets/icons/box.png';
+  static const String iconsBuilding01 = 'assets/icons/building-01.svg';
   static const String iconsCake = 'assets/icons/cake.svg';
   static const String iconsCalendarCheck01 =
-      'assets/icons/calendar-check-01.svg';
+      'assets/icons/calendar-check-01.png';
   static const String iconsCalender = 'assets/icons/calender.svg';
   static const String iconsCall = 'assets/icons/Call.svg';
-  static const String iconsCoinsHand = 'assets/icons/coins-hand.svg';
+  static const String iconsCoinsHand = 'assets/icons/coins-hand.png';
   static const String iconsCurrencyDollarCircle =
       'assets/icons/currency-dollar-circle.svg';
+  static const String iconsDetails = 'assets/icons/details.svg';
   static const String iconsEnvelope = 'assets/icons/envelope.svg';
   static const String iconsEyeoff = 'assets/icons/Eye off.svg';
   static const String iconsFileCheck01 = 'assets/icons/file-check-01.svg';
   static const String iconsFilter = 'assets/icons/Filter.svg';
   static const String iconsFlag = 'assets/icons/Flag.svg';
   static const String iconsGoBack = 'assets/icons/Go Back.svg';
-  static const String iconsGrid01 = 'assets/icons/grid-01.svg';
+  static const String iconsGrid01 = 'assets/icons/grid-01.png';
+  static const String iconsHomeLine = 'assets/icons/home-line.svg';
+  static const String iconsIcon = 'assets/icons/Icon.png';
   static const String iconsIconLuncher = 'assets/icons/icon_luncher.png';
+  static const String iconsIconmoney = 'assets/icons/Iconmoney.png';
+  static const String iconsMail01 = 'assets/icons/mail-01.svg';
   static const String iconsNotifications = 'assets/icons/Notifications.svg';
-  static const String iconsPackage = 'assets/icons/package.svg';
+  static const String iconsPackage = 'assets/icons/package.png';
   static const String iconsSearchNormal = 'assets/icons/search-normal.svg';
   static const String iconsUsers = 'assets/icons/users.svg';
+  static const String iconsUsersX = 'assets/icons/users-x.svg';
+  static const String iconsUseryes = 'assets/icons/useryes.svg';
   static const String iconsWhatsapp = 'assets/icons/Whatsapp.svg';
   static const String imagesGenre = 'assets/images/genre.png';
   static const String imagesLine = 'assets/images/Line.png';
   static const String imagesPie = 'assets/images/Pie.svg';
   static const String imagesSynergiaLogo = 'assets/images/synergia_logo.png';
-  static const String kodchasanKodchasanBold =
-      'assets/font/Kodchasan/Kodchasan-Bold.ttf';
-  static const String kodchasanKodchasanBoldItalic =
-      'assets/font/Kodchasan/Kodchasan-BoldItalic.ttf';
-  static const String kodchasanKodchasanExtraLight =
-      'assets/font/Kodchasan/Kodchasan-ExtraLight.ttf';
-  static const String kodchasanKodchasanExtraLightItalic =
-      'assets/font/Kodchasan/Kodchasan-ExtraLightItalic.ttf';
-  static const String kodchasanKodchasanItalic =
-      'assets/font/Kodchasan/Kodchasan-Italic.ttf';
-  static const String kodchasanKodchasanLight =
-      'assets/font/Kodchasan/Kodchasan-Light.ttf';
-  static const String kodchasanKodchasanLightItalic =
-      'assets/font/Kodchasan/Kodchasan-LightItalic.ttf';
-  static const String kodchasanKodchasanMedium =
-      'assets/font/Kodchasan/Kodchasan-Medium.ttf';
-  static const String kodchasanKodchasanMediumItalic =
-      'assets/font/Kodchasan/Kodchasan-MediumItalic.ttf';
-  static const String kodchasanKodchasanRegular =
-      'assets/font/Kodchasan/Kodchasan-Regular.ttf';
-  static const String kodchasanKodchasanSemiBold =
-      'assets/font/Kodchasan/Kodchasan-SemiBold.ttf';
-  static const String kodchasanKodchasanSemiBoldItalic =
-      'assets/font/Kodchasan/Kodchasan-SemiBoldItalic.ttf';
-  static const String kodchasanOFL = 'assets/font/Kodchasan/OFL.txt';
+  static const String sFproSFPRODISPLAYBLACKITALIC =
+      'assets/font/SFpro/SFPRODISPLAYBLACKITALIC.otf';
+  static const String sFproSFPRODISPLAYBOLD =
+      'assets/font/SFpro/SFPRODISPLAYBOLD.otf';
+  static const String sFproSFPRODISPLAYHEAVYITALIC =
+      'assets/font/SFpro/SFPRODISPLAYHEAVYITALIC.otf';
+  static const String sFproSFPRODISPLAYLIGHTITALIC =
+      'assets/font/SFpro/SFPRODISPLAYLIGHTITALIC.otf';
+  static const String sFproSFPRODISPLAYMEDIUM =
+      'assets/font/SFpro/SFPRODISPLAYMEDIUM.otf';
+  static const String sFproSFPRODISPLAYREGULAR =
+      'assets/font/SFpro/SFPRODISPLAYREGULAR.otf';
+  static const String sFproSFPRODISPLAYSEMIBOLDITALIC =
+      'assets/font/SFpro/SFPRODISPLAYSEMIBOLDITALIC.otf';
+  static const String sFproSFPRODISPLAYTHINITALIC =
+      'assets/font/SFpro/SFPRODISPLAYTHINITALIC.otf';
+  static const String sFproSFPRODISPLAYULTRALIGHTITALIC =
+      'assets/font/SFpro/SFPRODISPLAYULTRALIGHTITALIC.otf';
 }

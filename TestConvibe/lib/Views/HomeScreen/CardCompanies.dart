@@ -13,23 +13,23 @@ class Cardcompanies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //  padding: EdgeInsets.all(10),
       margin: EdgeInsets.only(top: 18),
       height: 90,
       width: MediaQuery.of(context).size.width * 0.95, // Responsive width
-      decoration: BoxDecoration(
-        color: Colors.grey[200], // Background color
-        borderRadius: BorderRadius.circular(50),
-      ),
+      // decoration: BoxDecoration(
+      //   color: Colors.grey[200], // Background color
+      //   borderRadius: BorderRadius.circular(50),
+      // ),
       child: Row(
         children: [
           Container(
+            margin: EdgeInsets.only(left: 20),
             decoration: BoxDecoration(
-              color: backgroundCard, // Background color
+              color: Colors.white, // Background color
               borderRadius: BorderRadius.circular(50),
             ),
-            width: 80,
-            height: 80,
+            width: 60,
+            height: 60,
             child: ClipOval(
               child: Image.network(company.logo!),
             ),
@@ -44,7 +44,7 @@ class Cardcompanies extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
+                  padding: const EdgeInsets.only(top: 0.0, bottom: 0),
                   child: Text(
                     company.companyName!,
                     style: GoogleFonts.poppins(
@@ -54,46 +54,56 @@ class Cardcompanies extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  child: Text(
-                    'Doha-Qatar',
-                    style: GoogleFonts.poppins(
-                      fontSize: 12, // Responsive font size
-                      color: BaseColor,
+                Padding(
+                  padding: const EdgeInsets.only(top: 5.0, bottom: 5),
+                  child: Container(
+                    child: Text(
+                      'Doha-Qatar',
+                      style: GoogleFonts.poppins(
+                        fontSize: 12, // Responsive font size
+                        color: BaseColor,
+                      ),
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 15,
-                ),
+                // SizedBox(
+                //   height: 15,
+                // ),
                 Container(
-                  width: MediaQuery.of(context).size.width *
-                      0.7, // Responsive width
-                  child: Row(
-                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  width: MediaQuery.of(context).size.width, // Responsive width
+                  child: Column(
                     children: [
-                      for (var data in ["192", "19", "12"])
-                        Expanded(
-                          child: Row(
-                            // mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset(
-                                width: 13,
-                                height: 13,
-                                "assets/icons/users.svg",
-                                colorFilter: ColorFilter.mode(
-                                    Colors.grey, BlendMode.srcIn),
-                                semanticsLabel: 'User icon',
+                      Row(
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          for (var data in ["192", "19", "12"])
+                            Expanded(
+                              child: Row(
+                                // mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SvgPicture.asset(
+                                    width: 13,
+                                    height: 13,
+                                    "assets/icons/users.svg",
+                                    colorFilter: ColorFilter.mode(
+                                        Colors.grey, BlendMode.srcIn),
+                                    semanticsLabel: 'User icon',
+                                  ),
+                                  Text(
+                                    data,
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                data,
-                                style: TextStyle(
-                                  fontSize: 10,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                            ),
+                        ],
+                      ),
+                      Divider(
+                        color: Colors.grey[300],
+                        height: 20,
+                      )
                     ],
                   ),
                 ),

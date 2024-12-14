@@ -1,5 +1,13 @@
 import 'package:flutter/cupertino.dart';
 
+import '../Views/CompanyInfo/AbsenteesPage.dart';
+import '../Views/CompanyInfo/Documents.dart';
+import '../Views/CompanyInfo/EmployeePage.dart';
+import '../Views/CompanyInfo/InfoScreen.dart';
+import '../Views/CompanyInfo/OffDutyPage.dart';
+import '../Views/CompanyInfo/Profile.dart';
+import '../Views/CompanyInfo/RenewalsPage.dart';
+import '../Views/CompanyInfo/SalariesPage.dart';
 import '../Views/Dashboard/DashboardScreen.dart';
 import '../Views/Employee/DetailsEmployee.dart';
 import '../Views/Employee/EmployeeScreen.dart';
@@ -14,5 +22,12 @@ Map<String, WidgetBuilder> routes = {
   Login.routeName: (context) => Login(),
   HomeScreen.routeName: (context) => HomeScreen(),
   SettingServer.routeName: (context) => SettingServer(),
-
+  Infoscreen.routeName: (context) => Infoscreen(),
+  AbsenteesPage.routeName: (context) => AbsenteesPage(),
+  EmployeePage.routeName: (context) => EmployeePage(),
+  OffDutyPage.routeName: (context) => OffDutyPage(),
+  RenewalsPage.routeName: (context) => RenewalsPage(),
+  SalariesPage.routeName: (context) => SalariesPage(),
+  Documents.routeName: (context) => Documents(),
+  Profile.routeName: (context) => Profile(),
 };

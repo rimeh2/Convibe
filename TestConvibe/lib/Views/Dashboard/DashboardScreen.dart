@@ -8,6 +8,7 @@ import 'package:testconvibe/Services/Company.dart';
 import '../../Constants/colors.dart';
 import '../../Model/Company/ConpanyResponse.dart';
 import '../Components/AppBar.dart';
+import '../Components/BottomNavBar.dart';
 import '../Components/CustomNavBar.dart';
 import '../Provider/provider.dart';
 
@@ -37,9 +38,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
     inputTexProvider = Provider.of<inputTex>(context);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (widget.company.id != null && widget.company.logo != null) {
+      if (widget.company.id != null) {
         inputTexProvider.setid(widget.company.id!);
-        inputTexProvider.setimage(widget.company.logo!);
       }
     });
   }
@@ -372,35 +372,32 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarSpecial(Title: "Dashboard", Action: _buildProfileImage()),
-      body: FutureBuilder<Data?>(
-        future: dashbordFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (snapshot.hasError) {
-            return Center(child: Text("Error: ${snapshot.error}"));
-          }
-          if (!snapshot.hasData) {
-            return const Center(child: Text("No data available"));
-          }
+        appBar: AppBarSpecial(Title: "Dashboard", Action: _buildProfileImage()),
+        body: FutureBuilder<Data?>(
+          future: dashbordFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (snapshot.hasError) {
+              return Center(child: Text("Error: ${snapshot.error}"));
+            }
+            if (!snapshot.hasData) {
+              return const Center(child: Text("No data available"));
+            }
 
-          final dashbord = snapshot.data!;
-          return SingleChildScrollView(
-            child: Column(
-              children: [
-                _buildCompanyCard(dashbord),
-                _buildNationalitySection(dashbord),
-                _buildGenderSection(dashbord),
-              ],
-            ),
-          );
-        },
-      ),
-      bottomNavigationBar: CustomNavBar(
-        imageCenter: widget.company.logo,
-      ),
-    );
+            final dashbord = snapshot.data!;
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  _buildCompanyCard(dashbord),
+                  _buildNationalitySection(dashbord),
+                  _buildGenderSection(dashbord),
+                ],
+              ),
+            );
+          },
+        ),
+        bottomNavigationBar: BottomNavBar());
   }
 }
